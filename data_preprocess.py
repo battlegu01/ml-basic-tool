@@ -5,6 +5,12 @@ def delete_na(df):
     return df.dropna(axis=0)
 
 def fill_na(df,method=0):
+    '''
+    fill nan value with:
+    method=1:0 default
+    method=2:upper value 
+    method=3:behand value
+    '''
     if method==0:
         return df.fillna(0)
     elif method==1:
@@ -12,8 +18,15 @@ def fill_na(df,method=0):
     elif method==2:
         return df.fillna(method='bfill')
 
+def drop_na(df,method=0):
+    df = df.dropna()
+
 
 def fill_na_with_colmean(df,colname):
+    '''
+    fill column's nontype value with mean of each group which is 
+    grouped by colname
+    '''
     groups = df[colname].unique()
     ndf = pd.DataFrame()
     for ind in groups:
